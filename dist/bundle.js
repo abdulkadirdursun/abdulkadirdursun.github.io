@@ -340,7 +340,7 @@
 
   // src/main.ts
   async function init() {
-    const response = await fetch("data/projects.json");
+    const response = await fetch(`data/projects.json?v=${Date.now()}`);
     const data = await response.json();
     const heroEl = document.getElementById("hero");
     const tabEl = document.getElementById("tab-bar");

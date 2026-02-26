@@ -6,7 +6,7 @@ import { createProjectCard } from "./components/project-card";
 import { filterProjects } from "./utils/filter";
 
 async function init(): Promise<void> {
-  const response = await fetch("data/projects.json");
+  const response = await fetch(`data/projects.json?v=${Date.now()}`);
   const data: PortfolioData = await response.json();
 
   const heroEl = document.getElementById("hero")!;
