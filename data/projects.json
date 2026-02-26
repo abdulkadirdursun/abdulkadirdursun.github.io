@@ -34,8 +34,7 @@
         "graphics": ["3D"]
       },
       "links": [
-        { "platform": "steam", "url": "https://store.steampowered.com/app/3640900/Growmon_Island" },
-        { "platform": "itchio", "url": "https://store.steampowered.com/app/3640900/Growmon_Island" }
+        { "platform": "steam", "url": "https://store.steampowered.com/app/3640900/Growmon_Island" }
       ]
     },
     {
