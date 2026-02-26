@@ -4,7 +4,7 @@
     "bio": "Game developer",
     "avatar": "assets/profile.jpg",
     "socials": [
-      { "platform": "github", "url": "https://github.com/akadirdursun" },
+      { "platform": "github", "url": "https://github.com/abdulkadirdursun" },
       { "platform": "linkedin", "url": "https://www.linkedin.com/in/abdulkadirdursun" },
       { "platform": "itchio", "url": "https://akadird.itch.io/" }
     ]
