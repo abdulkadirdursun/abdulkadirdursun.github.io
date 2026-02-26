@@ -1,0 +1,186 @@
+{
+  "profile": {
+    "name": "Abdulkadir Dursun",
+    "bio": "Game developer",
+    "avatar": "assets/profile.jpg",
+    "socials": [
+      { "platform": "github", "url": "https://github.com/akadirdursun" },
+      { "platform": "linkedin", "url": "https://www.linkedin.com/in/abdulkadirdursun" },
+      { "platform": "itchio", "url": "https://akadird.itch.io/" }
+    ]
+  },
+  "tagTypes": [
+    { "id": "engine", "label": "Engine", "color": "#4a9eff" },
+    { "id": "platform", "label": "Platform", "color": "#50c878" },
+    { "id": "genre", "label": "Genre", "color": "#e8a043" },
+    { "id": "graphics", "label": "Graphics", "color": "#c77dba" }
+  ],
+  "projects": [
+    {
+      "name": "Growmon Island",
+      "category": "personal",
+      "status": "published",
+      "description": "Growmon Island is a cozy-idle game that lives on your desktop while you work",
+      "media": [
+        { "type": "youtube", "videoId": "qoQKPuWkPSQ" },
+        { "type": "image", "src": "assets/projects/growmonisland/cover1.png" },
+        { "type": "image", "src": "assets/projects/growmonisland/cover2.png" },
+        { "type": "image", "src": "assets/projects/growmonisland/cover3.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Steam"],
+        "genre": ["Casual", "Idler", "Creature Collector"],
+        "graphics": ["3D"]
+      },
+      "links": [
+        { "platform": "steam", "url": "https://store.steampowered.com/app/3640900/Growmon_Island" },
+        { "platform": "itchio", "url": "https://store.steampowered.com/app/3640900/Growmon_Island" }
+      ]
+    },
+    {
+      "name": "Pusher Master",
+      "category": "professional",
+      "status": "published",
+      "description": "Classic arcade-style coin pusher game.",
+      "media": [
+        { "type": "image", "src": "assets/projects/coinpusher/cover1.png"},
+        { "type": "image", "src": "assets/projects/coinpusher/cover2.png"},
+        { "type": "image", "src": "assets/projects/coinpusher/cover3.png"}
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android","iOS"],
+        "genre": ["Casino"],
+        "graphics": ["3D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=io.magicplay.pushparty" },
+        { "platform": "iOS", "url": "https://apps.apple.com/us/app/pusher-master-coin-fest/id6478162044"}
+      ]
+    },
+       {
+      "name": "Triple Pair 3D",
+      "category": "professional",
+      "status": "published",
+      "description": "3D Match 3 game. Clear the board by matching three objects.",
+      "media": [
+        { "type": "image", "src": "assets/projects/triplepair3/cover1.png" },
+        { "type": "image", "src": "assets/projects/triplepair3/cover2.png" },
+        { "type": "image", "src": "assets/projects/triplepair3/cover3.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android","iOS"],
+        "genre": ["Puzzle"],
+        "graphics": ["3D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=richie.triple.pair.match.tile.masters"},
+        { "platform": "iOS", "url": "https://apps.apple.com/tr/app/triple-pair-3d/id6451237181"}
+      ]
+    },
+    {
+      "name": "Tile Match: Home Design Puzzle",
+      "category": "professional",
+      "status": "published",
+      "description": "Tile Match is a classic tile-matching game inspired by the game of mahjong.",
+      "media": [
+        { "type": "image", "src": "assets/projects/tilematch/cover1.png" },
+        { "type": "image", "src": "assets/projects/tilematch/cover2.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android", "iOS"],
+        "genre": ["Puzzle"],
+        "graphics": ["2D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=powgames.home.design.makeover" },
+        { "platform": "iOS", "url": "https://apps.apple.com/tr/app/tile-match-home-design-puzzle/id1626286690"}
+      ]
+    },
+       {
+      "name": "Cube Match: Cube Puzzle 3D",
+      "category": "professional",
+      "status": "published",
+      "description": "3D Match game.",
+      "media": [
+        { "type": "image", "src": "assets/projects/cubematch/cover1.png" },
+        { "type": "image", "src": "assets/projects/cubematch/cover2.png" },
+        { "type": "image", "src": "assets/projects/cubematch/cover3.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android", "iOS"],
+        "genre": ["Puzzle"],
+        "graphics": ["3D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=richie.cube.master.match3D.triple.puzzle" },
+        { "platform": "iOS", "url": "https://apps.apple.com/us/app/cube-match-master-3d-puzzle/id6446830215"}
+      ]
+    },
+       {
+      "name": "Wood Match - Wood Block",
+      "category": "professional",
+      "status": "published",
+      "description": "Classic block puzzle game.",
+      "media": [
+        { "type": "image", "src": "assets/projects/woodmatch/cover1.png" },
+        { "type": "image", "src": "assets/projects/woodmatch/cover2.png" },
+        { "type": "image", "src": "assets/projects/woodmatch/cover3.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android", "iOS"],
+        "genre": ["Puzzle"],
+        "graphics": ["2D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=richie.wood.luck.block.puzzle" },
+        { "platform": "iOS", "url": "https://apps.apple.com/us/app/wood-match-wood-block/id6453887657"}
+      ]
+    },
+       {
+      "name": "Toy Cube Match",
+      "category": "professional",
+      "status": "published",
+      "description": "This is a swipe to match, match-3 game.",
+      "media": [
+        { "type": "image", "src": "assets/projects/toycubematch/cover1.png" },
+        { "type": "image", "src": "assets/projects/toycubematch/cover2.png" },
+        { "type": "image", "src": "assets/projects/toycubematch/cover3.png" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android"],
+        "genre": ["Puzzle"],
+        "graphics": ["2D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=richie.cubes.blast.pop.match" }
+      ]
+    },
+       {
+      "name": "Mr Richie",
+      "category": "professional",
+      "status": "published",
+      "description": "Mr Richie - Revenge Bullet is a Action-Platformer game.",
+      "media": [
+        { "type": "image", "src": "assets/projects/mrrichie/cover1.webp" },
+        { "type": "image", "src": "assets/projects/mrrichie/cover2.webp" },
+        { "type": "image", "src": "assets/projects/mrrichie/cover3.webp" }
+      ],
+      "tags": {
+        "engine": ["Unity"],
+        "platform": ["Android"],
+        "genre": ["Action", "Platformer"],
+        "graphics": ["2D"]
+      },
+      "links": [
+        { "platform": "Android", "url": "https://play.google.com/store/apps/details?id=richie.revenge.bullet.run.shoot" }
+      ]
+    }
+  ]
+}
