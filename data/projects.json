@@ -43,6 +43,7 @@
       "status": "published",
       "description": "Classic arcade-style coin pusher game.",
       "media": [
+        { "type": "youtube", "videoId": "Oi4bDKg491M" },
         { "type": "image", "src": "assets/projects/coinpusher/cover1.png"},
         { "type": "image", "src": "assets/projects/coinpusher/cover2.png"},
         { "type": "image", "src": "assets/projects/coinpusher/cover3.png"}
@@ -64,6 +65,7 @@
       "status": "published",
       "description": "3D Match 3 game. Clear the board by matching three objects.",
       "media": [
+        { "type": "youtube", "videoId": "4yywBCFWXcU" },
         { "type": "image", "src": "assets/projects/triplepair3/cover1.png" },
         { "type": "image", "src": "assets/projects/triplepair3/cover2.png" },
         { "type": "image", "src": "assets/projects/triplepair3/cover3.png" }
@@ -85,6 +87,7 @@
       "status": "published",
       "description": "Tile Match is a classic tile-matching game inspired by the game of mahjong.",
       "media": [
+        { "type": "youtube", "videoId": "G3aUdxGLzPc" },
         { "type": "image", "src": "assets/projects/tilematch/cover1.png" },
         { "type": "image", "src": "assets/projects/tilematch/cover2.png" }
       ],
