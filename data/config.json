@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "name": "Abdulkadir Dursun",
+    "bio": "Game developer",
+    "avatar": "assets/profile.jpg",
+    "socials": [
+      { "platform": "github", "url": "https://github.com/abdulkadirdursun" },
+      { "platform": "linkedin", "url": "https://www.linkedin.com/in/abdulkadirdursun" },
+      { "platform": "itchio", "url": "https://akadird.itch.io/" }
+    ]
+  },
+  "tagTypes": [
+    { "id": "engine", "label": "Engine", "color": "#4a9eff" },
+    { "id": "platform", "label": "Platform", "color": "#50c878" },
+    { "id": "genre", "label": "Genre", "color": "#e8a043" },
+    { "id": "graphics", "label": "Graphics", "color": "#c77dba" }
+  ]
+}

@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --outfile=dist/bundle.js --format=iife",
+    "build:data": "npx tsx scripts/build-data.ts",
+    "build:js": "esbuild src/main.ts --bundle --outfile=dist/bundle.js --format=iife",
+    "build": "npm run build:data && npm run build:js",
     "watch": "esbuild src/main.ts --bundle --outfile=dist/bundle.js --format=iife --watch"
   },
   "devDependencies": {
     "esbuild": "^0.20.0",
+    "gray-matter": "^4.0.3",
+    "tsx": "^4.21.0",
     "typescript": "^5.4.0"
   }
 }
