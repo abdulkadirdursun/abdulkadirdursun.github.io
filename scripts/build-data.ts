@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { marked } from "marked";
+
+marked.setOptions({ gfm: true, breaks: false });
 
 interface ProjectFrontmatter {
   name: string;
@@ -74,7 +77,7 @@ for (const category of categoryIds) {
       sortOrder: frontmatter.sortOrder,
       category,
       status: frontmatter.status,
-      description: content.trim(),
+      description: marked.parse(content.trim(), { async: false }) as string,
       media: frontmatter.media,
       tags: frontmatter.tags,
       links: frontmatter.links,
