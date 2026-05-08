@@ -1,6 +1,6 @@
-import { Project, TagType } from "../types";
+import { Project, TagType, STATUS_LABELS } from "../types";
 import { createSlideshow } from "./slideshow";
-import { getIcon } from "../utils/icons";
+import { createIconNode } from "../utils/icons";
 
 export interface ProjectCard {
   element: HTMLElement;
@@ -17,32 +17,22 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): Projec
   const slideshow = createSlideshow(project.media);
   mediaWrapper.appendChild(slideshow.element);
 
-  const statusLabels: Record<string, string> = {
-    "published": "Published",
-    "cancelled": "Cancelled",
-    "prototype": "Prototype",
-    "in-development": "In Development",
-  };
-
   const badge = document.createElement("span");
   badge.className = `status-badge status-${project.status}`;
-  badge.textContent = statusLabels[project.status] || project.status;
+  badge.textContent = STATUS_LABELS[project.status] || project.status;
   mediaWrapper.appendChild(badge);
 
   card.appendChild(mediaWrapper);
 
-  // Title
   const title = document.createElement("h2");
   title.textContent = project.name;
   card.appendChild(title);
 
-  // Description
   const desc = document.createElement("p");
   desc.className = "project-desc";
   desc.textContent = project.description;
   card.appendChild(desc);
 
-  // Tags
   const tagsContainer = document.createElement("div");
   tagsContainer.className = "project-tags";
   for (const tagType of tagTypes) {
@@ -58,7 +48,6 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): Projec
   }
   card.appendChild(tagsContainer);
 
-  // Platform links
   const linksContainer = document.createElement("div");
   linksContainer.className = "project-links";
   for (const link of project.links) {
@@ -68,7 +57,13 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): Projec
     a.rel = "noopener noreferrer";
     a.className = "platform-link";
     a.dataset.platform = link.platform;
-    a.innerHTML = `${getIcon(link.platform)}<span>${link.platform}</span>`;
+
+    a.appendChild(createIconNode(link.platform));
+
+    const label = document.createElement("span");
+    label.textContent = link.platform;
+    a.appendChild(label);
+
     linksContainer.appendChild(a);
   }
   card.appendChild(linksContainer);

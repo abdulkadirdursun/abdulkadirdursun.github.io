@@ -18,6 +18,16 @@
       }
     ]
   },
+  "categories": [
+    {
+      "id": "personal",
+      "label": "Personal"
+    },
+    {
+      "id": "professional",
+      "label": "Professional"
+    }
+  ],
   "tagTypes": [
     {
       "id": "engine",

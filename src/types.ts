@@ -10,6 +10,11 @@ export interface Profile {
   socials: Social[];
 }
 
+export interface CategoryDef {
+  id: string;
+  label: string;
+}
+
 export interface TagType {
   id: string;
   label: string;
@@ -27,9 +32,16 @@ export interface ProjectLink {
   url: string;
 }
 
-export type ProjectCategory = "personal" | "professional";
+export type ProjectCategory = string;
 
-export type ProjectStatus = "published" | "cancelled" | "prototype" | "in-development";
+export const STATUS_LABELS = {
+  "published": "Published",
+  "cancelled": "Cancelled",
+  "prototype": "Prototype",
+  "in-development": "In Development",
+} as const;
+
+export type ProjectStatus = keyof typeof STATUS_LABELS;
 
 export interface Project {
   name: string;
@@ -43,6 +55,7 @@ export interface Project {
 
 export interface PortfolioData {
   profile: Profile;
+  categories: CategoryDef[];
   tagTypes: TagType[];
   projects: Project[];
 }

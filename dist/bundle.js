@@ -13,39 +13,60 @@
   function getIcon(platform) {
     return icons[platform.toLowerCase()] || icons.web;
   }
+  function createIconNode(platform) {
+    const tmpl = document.createElement("template");
+    tmpl.innerHTML = getIcon(platform);
+    return tmpl.content;
+  }
 
   // src/components/hero.ts
   function renderHero(container, profile) {
-    container.innerHTML = `
-    <div class="hero-content">
-      <img class="hero-avatar" src="${profile.avatar}" alt="${profile.name}" />
-      <div class="hero-info">
-        <h1>${profile.name}</h1>
-        <p>${profile.bio}</p>
-        <div class="hero-socials">
-          ${profile.socials.map((s) => `
-            <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="social-btn" data-platform="${s.platform}">
-              ${getIcon(s.platform)}
-              <span>${s.platform}</span>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </div>
-  `;
+    container.innerHTML = "";
+    const content = document.createElement("div");
+    content.className = "hero-content";
+    const avatar = document.createElement("img");
+    avatar.className = "hero-avatar";
+    avatar.src = profile.avatar;
+    avatar.alt = profile.name;
+    content.appendChild(avatar);
+    const info = document.createElement("div");
+    info.className = "hero-info";
+    const name = document.createElement("h1");
+    name.textContent = profile.name;
+    info.appendChild(name);
+    const bio = document.createElement("p");
+    bio.textContent = profile.bio;
+    info.appendChild(bio);
+    const socials = document.createElement("div");
+    socials.className = "hero-socials";
+    for (const s of profile.socials) {
+      const link = document.createElement("a");
+      link.href = s.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "social-btn";
+      link.dataset.platform = s.platform;
+      link.appendChild(createIconNode(s.platform));
+      const label = document.createElement("span");
+      label.textContent = s.platform;
+      link.appendChild(label);
+      socials.appendChild(link);
+    }
+    info.appendChild(socials);
+    content.appendChild(info);
+    container.appendChild(content);
   }
 
   // src/components/tab-bar.ts
-  var TABS = [
-    { id: "all", label: "All" },
-    { id: "personal", label: "Personal" },
-    { id: "professional", label: "Professional" }
-  ];
-  function renderTabBar(container, onTabChange) {
+  function renderTabBar(container, categories, onTabChange) {
+    const tabs = [
+      { id: "all", label: "All" },
+      ...categories.map((c) => ({ id: c.id, label: c.label }))
+    ];
     const nav = document.createElement("div");
     nav.className = "tab-bar-inner";
     let activeTab = "all";
-    for (const tab of TABS) {
+    for (const tab of tabs) {
       const btn = document.createElement("button");
       btn.className = "tab-btn" + (tab.id === activeTab ? " active" : "");
       btn.textContent = tab.label;
@@ -190,6 +211,14 @@
     updateTypeButtons();
   }
 
+  // src/types.ts
+  var STATUS_LABELS = {
+    "published": "Published",
+    "cancelled": "Cancelled",
+    "prototype": "Prototype",
+    "in-development": "In Development"
+  };
+
   // src/components/slideshow.ts
   function createSlideshow(media) {
     const container = document.createElement("div");
@@ -279,15 +308,9 @@
     mediaWrapper.className = "media-wrapper";
     const slideshow = createSlideshow(project.media);
     mediaWrapper.appendChild(slideshow.element);
-    const statusLabels = {
-      "published": "Published",
-      "cancelled": "Cancelled",
-      "prototype": "Prototype",
-      "in-development": "In Development"
-    };
     const badge = document.createElement("span");
     badge.className = `status-badge status-${project.status}`;
-    badge.textContent = statusLabels[project.status] || project.status;
+    badge.textContent = STATUS_LABELS[project.status] || project.status;
     mediaWrapper.appendChild(badge);
     card.appendChild(mediaWrapper);
     const title = document.createElement("h2");
@@ -320,7 +343,10 @@
       a.rel = "noopener noreferrer";
       a.className = "platform-link";
       a.dataset.platform = link.platform;
-      a.innerHTML = `${getIcon(link.platform)}<span>${link.platform}</span>`;
+      a.appendChild(createIconNode(link.platform));
+      const label = document.createElement("span");
+      label.textContent = link.platform;
+      a.appendChild(label);
       linksContainer.appendChild(a);
     }
     card.appendChild(linksContainer);
@@ -341,6 +367,14 @@
   }
 
   // src/main.ts
+  function readFadeDurationMs() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue("--fade-duration").trim();
+    if (raw.endsWith("ms"))
+      return parseFloat(raw);
+    if (raw.endsWith("s"))
+      return parseFloat(raw) * 1e3;
+    return 300;
+  }
   async function init() {
     const gridEl = document.getElementById("projects-grid");
     let data;
@@ -359,6 +393,7 @@
     const tabEl = document.getElementById("tab-bar");
     const filterEl = document.getElementById("filter-bar");
     renderHero(heroEl, data.profile);
+    const fadeMs = readFadeDurationMs();
     let isAnimating = false;
     let activeTab = "all";
     let activeFilters = {};
@@ -400,7 +435,7 @@
       setTimeout(() => {
         mountCards(projects, true);
         isAnimating = false;
-      }, 300);
+      }, fadeMs);
     }
     function rebuildFilterBar() {
       const categoryProjects = activeTab === "all" ? data.projects : data.projects.filter((p) => p.category === activeTab);
@@ -409,7 +444,7 @@
         renderProjects(getVisibleProjects(), true);
       });
     }
-    renderTabBar(tabEl, (tab) => {
+    renderTabBar(tabEl, data.categories, (tab) => {
       activeTab = tab;
       activeFilters = {};
       rebuildFilterBar();

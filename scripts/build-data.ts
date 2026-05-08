@@ -11,8 +11,12 @@ interface ProjectFrontmatter {
   links: Array<{ platform: string; url: string }>;
 }
 
+interface CategoryDef {
+  id: string;
+  label: string;
+}
+
 const REQUIRED_FIELDS: (keyof ProjectFrontmatter)[] = ["name", "status", "media", "tags", "links"];
-const CATEGORIES = ["personal", "professional"] as const;
 
 const dataDir = path.resolve(__dirname, "..", "data");
 const projectsDir = path.join(dataDir, "projects");
@@ -22,11 +26,21 @@ const outputPath = path.join(dataDir, "projects.json");
 // Read config
 const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
 
+// Validate categories from config
+if (!Array.isArray(config.categories) || config.categories.length === 0) {
+  console.error("ERROR: config.json must define a non-empty `categories` array");
+  process.exit(1);
+}
+
+const categories = config.categories as CategoryDef[];
+const categoryIds = categories.map(c => c.id);
+const categoryOrder = new Map(categoryIds.map((id, i) => [id, i]));
+
 // Collect projects from category folders
 const projects: Array<Record<string, unknown>> = [];
 let hasErrors = false;
 
-for (const category of CATEGORIES) {
+for (const category of categoryIds) {
   const categoryDir = path.join(projectsDir, category);
   if (!fs.existsSync(categoryDir)) continue;
 
@@ -69,7 +83,7 @@ for (const category of CATEGORIES) {
 }
 
 // Warn on duplicate sortOrder within same category
-for (const category of CATEGORIES) {
+for (const category of categoryIds) {
   const categoryProjects = projects.filter(p => p.category === category && p.sortOrder !== undefined);
   const seen = new Map<number, string[]>();
   for (const p of categoryProjects) {
@@ -84,11 +98,10 @@ for (const category of CATEGORIES) {
   }
 }
 
-// Sort projects: per-category, sortOrder ascending (with-sortOrder first, then without)
+// Sort projects: per-category (in config order), sortOrder ascending (with-sortOrder first, then without)
 projects.sort((a, b) => {
-  // Group by category first (preserve CATEGORIES order)
-  const catA = CATEGORIES.indexOf(a.category as typeof CATEGORIES[number]);
-  const catB = CATEGORIES.indexOf(b.category as typeof CATEGORIES[number]);
+  const catA = categoryOrder.get(a.category as string) ?? Number.MAX_SAFE_INTEGER;
+  const catB = categoryOrder.get(b.category as string) ?? Number.MAX_SAFE_INTEGER;
   if (catA !== catB) return catA - catB;
 
   const orderA = a.sortOrder as number | undefined;
@@ -116,12 +129,13 @@ for (const p of projects) {
 // Write output
 const output = {
   profile: config.profile,
+  categories,
   tagTypes: config.tagTypes,
   projects,
 };
 
 fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
-console.log(`Built data/projects.json with ${projects.length} projects`);
+console.log(`Built data/projects.json with ${projects.length} projects across ${categoryIds.length} categories`);
 
 if (hasErrors) {
   process.exit(1);

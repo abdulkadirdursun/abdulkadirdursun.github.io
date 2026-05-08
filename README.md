@@ -55,7 +55,7 @@ Note: `watch` only re-bundles JS. If you edit files under `data/`, run `npm run 
 
 Authoring happens in two places:
 
-1. **`data/config.json`** — your profile, social links, and the list of `tagTypes` (filter categories like Engine, Genre, etc.).
+1. **`data/config.json`** — your profile, social links, project `categories` (the tabs), and `tagTypes` (filter categories like Engine, Genre, etc.).
 2. **`data/projects/<category>/<slug>.md`** — one markdown file per project. YAML frontmatter holds metadata; the markdown body is the project description.
 
 `scripts/build-data.ts` (run via `tsx`) reads both, validates required fields, sorts projects, and writes a single combined `data/projects.json`. At runtime, `src/main.ts` fetches that JSON and renders the page.
@@ -209,33 +209,26 @@ The filter bar only displays tag values that are present in the currently visibl
 
 ## Adding a project category
 
-Categories are hardcoded in three places — to add a new one (e.g. `freelance`), update all three:
+Categories are defined in `data/config.json`. To add a new one (e.g. `freelance`):
 
-1. `scripts/build-data.ts` — add the slug to the `CATEGORIES` constant:
-   ```ts
-   const CATEGORIES = ["personal", "professional", "freelance"] as const;
+1. Add an entry to the `categories` array:
+   ```json
+   "categories": [
+     { "id": "personal",     "label": "Personal" },
+     { "id": "professional", "label": "Professional" },
+     { "id": "freelance",    "label": "Freelance" }
+   ]
    ```
-2. `src/types.ts` — add it to the `ProjectCategory` union:
-   ```ts
-   export type ProjectCategory = "personal" | "professional" | "freelance";
-   ```
-3. `src/components/tab-bar.ts` — add a tab entry:
-   ```ts
-   const TABS: Tab[] = [
-     { id: "all",          label: "All" },
-     { id: "personal",     label: "Personal" },
-     { id: "professional", label: "Professional" },
-     { id: "freelance",    label: "Freelance" },
-   ];
-   ```
-4. Create the folder `data/projects/freelance/` and add markdown files.
-5. Run `npm run build`.
+2. Create the matching folder `data/projects/freelance/` and add markdown files.
+3. Run `npm run build`.
 
-The order in `CATEGORIES` controls the order projects render in the **All** tab.
+- `id` — slug used as both the folder name and the tab data attribute. Must match the folder under `data/projects/`.
+- `label` — text shown on the tab.
+- The order of entries in `categories` controls tab order **and** the order projects render in the **All** tab.
 
 ## Removing a project category
 
-Reverse the above. Delete the folder, the entry in `CATEGORIES`, the union member in `types.ts`, and the tab entry. Rebuild.
+Delete the entry from `categories` in `config.json` and (optionally) delete the matching folder under `data/projects/`. Rebuild. If the folder remains but the entry is gone, the projects in it are silently ignored.
 
 ---
 
@@ -308,7 +301,7 @@ If you use a project page (not a user/organization page), the site lives at a su
 ├── index.html                       # Static shell — has #hero, #tab-bar, #filter-bar, #projects-grid mount points
 ├── css/styles.css                   # All styles (vanilla CSS with custom properties)
 ├── data/
-│   ├── config.json                  # Profile + tagTypes (edit this)
+│   ├── config.json                  # Profile + categories + tagTypes (edit this)
 │   ├── projects/
 │   │   ├── personal/                # One .md per project, YAML frontmatter + body
 │   │   │   └── *.md

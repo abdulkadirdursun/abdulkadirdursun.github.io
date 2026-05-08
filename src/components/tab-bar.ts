@@ -1,28 +1,23 @@
-import { ProjectCategory } from "../types";
+import { CategoryDef } from "../types";
 
-export type TabId = "all" | ProjectCategory;
-
-interface Tab {
-  id: TabId;
-  label: string;
-}
-
-const TABS: Tab[] = [
-  { id: "all", label: "All" },
-  { id: "personal", label: "Personal" },
-  { id: "professional", label: "Professional" },
-];
+export type TabId = "all" | string;
 
 export function renderTabBar(
   container: HTMLElement,
+  categories: CategoryDef[],
   onTabChange: (tab: TabId) => void
 ): void {
+  const tabs: Array<{ id: TabId; label: string }> = [
+    { id: "all", label: "All" },
+    ...categories.map(c => ({ id: c.id, label: c.label })),
+  ];
+
   const nav = document.createElement("div");
   nav.className = "tab-bar-inner";
 
   let activeTab: TabId = "all";
 
-  for (const tab of TABS) {
+  for (const tab of tabs) {
     const btn = document.createElement("button");
     btn.className = "tab-btn" + (tab.id === activeTab ? " active" : "");
     btn.textContent = tab.label;

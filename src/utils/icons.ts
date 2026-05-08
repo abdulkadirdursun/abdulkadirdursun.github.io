@@ -11,3 +11,9 @@ const icons: Record<string, string> = {
 export function getIcon(platform: string): string {
   return icons[platform.toLowerCase()] || icons.web;
 }
+
+export function createIconNode(platform: string): Node {
+  const tmpl = document.createElement("template");
+  tmpl.innerHTML = getIcon(platform);
+  return tmpl.content;
+}

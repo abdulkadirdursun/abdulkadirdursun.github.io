@@ -5,6 +5,13 @@ import { renderFilterBar } from "./components/filter-bar";
 import { createProjectCard, ProjectCard } from "./components/project-card";
 import { filterProjects } from "./utils/filter";
 
+function readFadeDurationMs(): number {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--fade-duration").trim();
+  if (raw.endsWith("ms")) return parseFloat(raw);
+  if (raw.endsWith("s")) return parseFloat(raw) * 1000;
+  return 300;
+}
+
 async function init(): Promise<void> {
   const gridEl = document.getElementById("projects-grid")!;
 
@@ -27,6 +34,7 @@ async function init(): Promise<void> {
 
   renderHero(heroEl, data.profile);
 
+  const fadeMs = readFadeDurationMs();
   let isAnimating = false;
   let activeTab: TabId = "all";
   let activeFilters: Record<string, string[]> = {};
@@ -74,7 +82,7 @@ async function init(): Promise<void> {
     setTimeout(() => {
       mountCards(projects, true);
       isAnimating = false;
-    }, 300);
+    }, fadeMs);
   }
 
   function rebuildFilterBar(): void {
@@ -88,7 +96,7 @@ async function init(): Promise<void> {
     });
   }
 
-  renderTabBar(tabEl, (tab) => {
+  renderTabBar(tabEl, data.categories, (tab) => {
     activeTab = tab;
     activeFilters = {};
     rebuildFilterBar();

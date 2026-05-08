@@ -7,10 +7,7 @@
   --text-secondary: #8b8fa3;
   --accent: #6c63ff;
   --accent-hover: #7f78ff;
-  --tag-engine: #4a9eff;
-  --tag-platform: #50c878;
-  --tag-genre: #e8a043;
-  --tag-graphics: #c77dba;
+  --fade-duration: 300ms;
 }
 
 /* ===== Reset ===== */
@@ -330,7 +327,7 @@ img {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity var(--fade-duration) ease, transform var(--fade-duration) ease;
 }
 
 .project-card h2 {

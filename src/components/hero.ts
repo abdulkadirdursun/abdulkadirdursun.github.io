@@ -1,22 +1,49 @@
 import { Profile } from "../types";
-import { getIcon } from "../utils/icons";
+import { createIconNode } from "../utils/icons";
 
 export function renderHero(container: HTMLElement, profile: Profile): void {
-  container.innerHTML = `
-    <div class="hero-content">
-      <img class="hero-avatar" src="${profile.avatar}" alt="${profile.name}" />
-      <div class="hero-info">
-        <h1>${profile.name}</h1>
-        <p>${profile.bio}</p>
-        <div class="hero-socials">
-          ${profile.socials.map(s => `
-            <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="social-btn" data-platform="${s.platform}">
-              ${getIcon(s.platform)}
-              <span>${s.platform}</span>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </div>
-  `;
+  container.innerHTML = "";
+
+  const content = document.createElement("div");
+  content.className = "hero-content";
+
+  const avatar = document.createElement("img");
+  avatar.className = "hero-avatar";
+  avatar.src = profile.avatar;
+  avatar.alt = profile.name;
+  content.appendChild(avatar);
+
+  const info = document.createElement("div");
+  info.className = "hero-info";
+
+  const name = document.createElement("h1");
+  name.textContent = profile.name;
+  info.appendChild(name);
+
+  const bio = document.createElement("p");
+  bio.textContent = profile.bio;
+  info.appendChild(bio);
+
+  const socials = document.createElement("div");
+  socials.className = "hero-socials";
+  for (const s of profile.socials) {
+    const link = document.createElement("a");
+    link.href = s.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.className = "social-btn";
+    link.dataset.platform = s.platform;
+
+    link.appendChild(createIconNode(s.platform));
+
+    const label = document.createElement("span");
+    label.textContent = s.platform;
+    link.appendChild(label);
+
+    socials.appendChild(link);
+  }
+  info.appendChild(socials);
+
+  content.appendChild(info);
+  container.appendChild(content);
 }
