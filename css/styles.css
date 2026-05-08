@@ -340,34 +340,19 @@ img {
   color: var(--text-secondary);
   font-size: 0.9rem;
   padding: 0 16px;
-  max-height: 4.8em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  position: relative;
-  transition: max-height 0.3s ease;
-}
-
-.project-desc.is-overflowing::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1.6em;
-  background: linear-gradient(to bottom, transparent, var(--bg-secondary) 85%);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .project-desc.is-overflowing {
+  display: block;
+  -webkit-line-clamp: unset;
   max-height: 12em;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
-}
-
-.project-card:hover .project-desc.is-overflowing::after {
-  opacity: 0;
 }
 
 .project-desc::-webkit-scrollbar {
