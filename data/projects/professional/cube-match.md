@@ -20,6 +20,7 @@ links:
   - platform: iOS
     url: https://apps.apple.com/us/app/cube-match-master-3d-puzzle/id6446830215
 ---
+
 A casual 3D cube-matching puzzle game focused on object sorting, pattern recognition and relaxing brain-training gameplay.
 
 I joined the project later and worked on theme/asset changes, new UI/UX design implementation, and gameplay feel improvements.
