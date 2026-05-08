@@ -320,6 +320,14 @@
     desc.className = "project-desc";
     desc.textContent = project.description;
     card.appendChild(desc);
+    const checkOverflow = () => {
+      desc.classList.toggle("is-overflowing", desc.scrollHeight > desc.clientHeight + 1);
+    };
+    const descObserver = new ResizeObserver(checkOverflow);
+    descObserver.observe(desc);
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(checkOverflow);
+    }
     const tagsContainer = document.createElement("div");
     tagsContainer.className = "project-tags";
     for (const tagType of tagTypes) {
@@ -350,7 +358,13 @@
       linksContainer.appendChild(a);
     }
     card.appendChild(linksContainer);
-    return { element: card, destroy: slideshow.destroy };
+    return {
+      element: card,
+      destroy: () => {
+        descObserver.disconnect();
+        slideshow.destroy();
+      }
+    };
   }
 
   // src/utils/filter.ts
