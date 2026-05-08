@@ -368,6 +368,37 @@ img {
   border-radius: 3px;
 }
 
+.project-desc > *:first-child {
+  margin-top: 0;
+}
+
+.project-desc > *:last-child {
+  margin-bottom: 0;
+}
+
+.project-desc p {
+  margin: 0 0 0.6em;
+}
+
+.project-desc ul,
+.project-desc ol {
+  margin: 0 0 0.6em;
+  padding-left: 1.4em;
+}
+
+.project-desc li {
+  margin-bottom: 0.2em;
+}
+
+.project-desc strong {
+  color: var(--text-primary);
+}
+
+.project-desc a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;

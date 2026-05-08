@@ -28,9 +28,9 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): Projec
   title.textContent = project.name;
   card.appendChild(title);
 
-  const desc = document.createElement("p");
+  const desc = document.createElement("div");
   desc.className = "project-desc";
-  desc.textContent = project.description;
+  desc.innerHTML = project.description;
   card.appendChild(desc);
 
   const COLLAPSED_MAX_EM = 4.8;
