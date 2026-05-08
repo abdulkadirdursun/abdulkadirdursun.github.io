@@ -20,4 +20,6 @@ links:
   - platform: iOS
     url: https://apps.apple.com/tr/app/tile-match-home-design-puzzle/id1626286690
 ---
-Tile Match is a classic tile-matching game inspired by the game of mahjong.
+A casual tile-matching puzzle game that combines match mechanics with progression and decoration systems.
+
+I joined the project later and worked on theme/asset changes, new UI/UX design implementation, new gameplay mechanics, new event systems etc.

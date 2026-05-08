@@ -20,4 +20,6 @@ links:
   - platform: steam
     url: https://store.steampowered.com/app/3640900/Growmon_Island
 ---
-Growmon Island is a cozy-idle game that lives on your desktop while you work
+Growmon Island is a desktop cozy-idle game where player unlocks new Growmon types, taking care and evolve them to new types. Game has customizable island with different type of decoration which some can be interactable.
+
+I worked as the only programmer on this project.

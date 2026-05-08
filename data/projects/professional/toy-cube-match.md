@@ -18,4 +18,6 @@ links:
   - platform: Android
     url: https://play.google.com/store/apps/details?id=richie.cubes.blast.pop.match
 ---
-This is a swipe to match, match-3 game.
+A colorful casual match puzzle game built around fast-paced level progression, boosters, and satisfying combo mechanics.
+
+I started with a ready-made template and worked on asset changes, new UI/UX design implementation and small gameplay improvements.

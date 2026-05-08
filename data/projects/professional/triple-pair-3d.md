@@ -22,4 +22,11 @@ links:
   - platform: iOS
     url: https://apps.apple.com/tr/app/triple-pair-3d/id6451237181
 ---
-3D Match 3 game. Clear the board by matching three objects.
+A 3D object-matching puzzle game centered on observation, memory, and relaxing item collection gameplay.
+
+I was one of the developers responsible of this project. My responsibilities were:
+
+- Implementing all the UI elements of the game,
+- Gameplay mechanics (boosters, events, etc)
+- Events (Daily Login, Endless treasure etc.)
+- ...
