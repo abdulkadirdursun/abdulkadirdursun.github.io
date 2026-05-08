@@ -9,6 +9,10 @@
       { "platform": "itchio", "url": "https://akadird.itch.io/" }
     ]
   },
+  "categories": [
+    { "id": "personal", "label": "Personal" },
+    { "id": "professional", "label": "Professional" }
+  ],
   "tagTypes": [
     { "id": "engine", "label": "Engine", "color": "#4a9eff" },
     { "id": "platform", "label": "Platform", "color": "#50c878" },

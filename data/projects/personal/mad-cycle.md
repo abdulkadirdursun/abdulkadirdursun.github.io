@@ -6,11 +6,11 @@ media:
     - type: youtube
       videoId: tH-vi7_MZOw
     - type: image
-      src: assets\projects\madcycle\cover1.png
+      src: assets/projects/madcycle/cover1.png
     - type: image
-      src: assets\projects\madcycle\cover2.png
+      src: assets/projects/madcycle/cover2.png
     - type: image
-      src: assets\projects\madcycle\cover3.png
+      src: assets/projects/madcycle/cover3.png
 tags:
     engine: [Unity]
     platform: [Itchio]

@@ -1,6 +1,11 @@
 import { MediaItem } from "../types";
 
-export function createSlideshow(media: MediaItem[]): HTMLElement {
+export interface Slideshow {
+  element: HTMLElement;
+  destroy: () => void;
+}
+
+export function createSlideshow(media: MediaItem[]): Slideshow {
   const container = document.createElement("div");
   container.className = "slideshow";
 
@@ -31,7 +36,9 @@ export function createSlideshow(media: MediaItem[]): HTMLElement {
 
   container.appendChild(track);
 
-  if (media.length <= 1) return container;
+  if (media.length <= 1) {
+    return { element: container, destroy: () => {} };
+  }
 
   // State
   let current = 0;
@@ -97,5 +104,5 @@ export function createSlideshow(media: MediaItem[]): HTMLElement {
     startAuto();
   }
 
-  return container;
+  return { element: container, destroy: stopAuto };
 }
