@@ -23,3 +23,10 @@ links:
     url: https://apps.apple.com/us/app/pusher-master-coin-fest/id6478162044
 ---
 Classic arcade-style coin pusher game.
+
+I worked as only developer in this project. Implemented gameplay mechanics, UI design, ADs calls etc...
+- Physic based gameplay.
+- Boosters
+- Mini slot Game
+- Resource & level systems.
+- ...

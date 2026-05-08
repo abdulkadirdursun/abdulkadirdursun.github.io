@@ -20,4 +20,10 @@ links:
   - platform: iOS
     url: https://apps.apple.com/us/app/wood-match-wood-block/id6453887657
 ---
-Classic block puzzle game.
+A minimalist block-matching puzzle game featuring strategic placement, relaxing progression, and brain-teasing challenges.
+
+I supervise the junior-developer worked on the game and later take over. I worked on:
+
+- Booster system,
+- New level progression design,
+- New ui implementation

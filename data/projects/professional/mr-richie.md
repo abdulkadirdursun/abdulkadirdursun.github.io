@@ -18,4 +18,6 @@ links:
   - platform: Android
     url: https://play.google.com/store/apps/details?id=richie.revenge.bullet.run.shoot
 ---
-Mr Richie - Revenge Bullet is a Action-Platformer game.
+A platformer-shooter game with different type of enemies, boos fights and level progression.
+
+I started with a ready-made template and worked on asset changes, new UI/UX design implementation and small gameplay improvements.
