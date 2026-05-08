@@ -216,8 +216,10 @@
       track.appendChild(slide);
     }
     container.appendChild(track);
-    if (media.length <= 1)
-      return container;
+    if (media.length <= 1) {
+      return { element: container, destroy: () => {
+      } };
+    }
     let current = 0;
     let autoTimer = null;
     function goTo(index) {
@@ -266,7 +268,7 @@
     if (media[0].type !== "youtube") {
       startAuto();
     }
-    return container;
+    return { element: container, destroy: stopAuto };
   }
 
   // src/components/project-card.ts
@@ -276,7 +278,7 @@
     const mediaWrapper = document.createElement("div");
     mediaWrapper.className = "media-wrapper";
     const slideshow = createSlideshow(project.media);
-    mediaWrapper.appendChild(slideshow);
+    mediaWrapper.appendChild(slideshow.element);
     const statusLabels = {
       "published": "Published",
       "cancelled": "Cancelled",
@@ -322,7 +324,7 @@
       linksContainer.appendChild(a);
     }
     card.appendChild(linksContainer);
-    return card;
+    return { element: card, destroy: slideshow.destroy };
   }
 
   // src/utils/filter.ts
@@ -340,27 +342,54 @@
 
   // src/main.ts
   async function init() {
-    const response = await fetch(`data/projects.json?v=${Date.now()}`);
-    const data = await response.json();
+    const gridEl = document.getElementById("projects-grid");
+    let data;
+    try {
+      const response = await fetch("data/projects.json");
+      if (!response.ok)
+        throw new Error(`HTTP ${response.status}`);
+      data = await response.json();
+    } catch (err) {
+      gridEl.innerHTML = `<p class="load-error">Couldn't load portfolio data. Run <code>npm run build</code> and reload.</p>`;
+      console.error("Failed to load data/projects.json:", err);
+      return;
+    }
+    document.title = data.profile.name;
     const heroEl = document.getElementById("hero");
     const tabEl = document.getElementById("tab-bar");
     const filterEl = document.getElementById("filter-bar");
-    const gridEl = document.getElementById("projects-grid");
     renderHero(heroEl, data.profile);
     let isAnimating = false;
     let activeTab = "all";
     let activeFilters = {};
+    let activeCards = [];
+    function tearDownCards() {
+      for (const card of activeCards)
+        card.destroy();
+      activeCards = [];
+    }
     function getVisibleProjects() {
       const byCategory = activeTab === "all" ? data.projects : data.projects.filter((p) => p.category === activeTab);
       return filterProjects(byCategory, activeFilters);
     }
+    function mountCards(projects, fadeIn) {
+      tearDownCards();
+      gridEl.innerHTML = "";
+      for (const project of projects) {
+        const card = createProjectCard(project, data.tagTypes);
+        if (fadeIn)
+          card.element.classList.add("fade-out");
+        activeCards.push(card);
+        gridEl.appendChild(card.element);
+      }
+      if (fadeIn) {
+        void gridEl.offsetHeight;
+        gridEl.querySelectorAll(".project-card").forEach((c) => c.classList.remove("fade-out"));
+      }
+    }
     function renderProjects(projects, animate = false) {
       if (!animate) {
-        gridEl.innerHTML = "";
-        for (const project of projects) {
-          const card = createProjectCard(project, data.tagTypes);
-          gridEl.appendChild(card);
-        }
+        mountCards(projects, false);
         return;
       }
       if (isAnimating)
@@ -369,16 +398,7 @@
       const existing = gridEl.querySelectorAll(".project-card");
       existing.forEach((card) => card.classList.add("fade-out"));
       setTimeout(() => {
-        gridEl.innerHTML = "";
-        for (const project of projects) {
-          const card = createProjectCard(project, data.tagTypes);
-          card.classList.add("fade-out");
-          gridEl.appendChild(card);
-        }
-        void gridEl.offsetHeight;
-        gridEl.querySelectorAll(".project-card").forEach((card) => {
-          card.classList.remove("fade-out");
-        });
+        mountCards(projects, true);
         isAnimating = false;
       }, 300);
     }

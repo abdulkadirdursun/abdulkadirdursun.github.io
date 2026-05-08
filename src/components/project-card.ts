@@ -2,7 +2,12 @@ import { Project, TagType } from "../types";
 import { createSlideshow } from "./slideshow";
 import { getIcon } from "../utils/icons";
 
-export function createProjectCard(project: Project, tagTypes: TagType[]): HTMLElement {
+export interface ProjectCard {
+  element: HTMLElement;
+  destroy: () => void;
+}
+
+export function createProjectCard(project: Project, tagTypes: TagType[]): ProjectCard {
   const card = document.createElement("article");
   card.className = "project-card";
 
@@ -10,7 +15,7 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): HTMLEl
   mediaWrapper.className = "media-wrapper";
 
   const slideshow = createSlideshow(project.media);
-  mediaWrapper.appendChild(slideshow);
+  mediaWrapper.appendChild(slideshow.element);
 
   const statusLabels: Record<string, string> = {
     "published": "Published",
@@ -68,5 +73,5 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): HTMLEl
   }
   card.appendChild(linksContainer);
 
-  return card;
+  return { element: card, destroy: slideshow.destroy };
 }

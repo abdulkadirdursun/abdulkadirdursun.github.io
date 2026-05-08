@@ -528,3 +528,20 @@ img {
   opacity: 0;
   transform: translateY(8px);
 }
+
+/* ===== Load Error ===== */
+.load-error {
+  grid-column: 1 / -1;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.load-error code {
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

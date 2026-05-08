@@ -42,10 +42,54 @@
   ],
   "projects": [
     {
+      "name": "Madcycle",
+      "category": "personal",
+      "status": "published",
+      "description": "Madcycle is a game developed by 3 person team (2 developer and 1 game artist) for a game-jam.",
+      "media": [
+        {
+          "type": "youtube",
+          "videoId": "tH-vi7_MZOw"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover1.png"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover2.png"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover3.png"
+        }
+      ],
+      "tags": {
+        "engine": [
+          "Unity"
+        ],
+        "platform": [
+          "Itchio"
+        ],
+        "genre": [
+          "FPS"
+        ],
+        "graphics": [
+          "3D"
+        ]
+      },
+      "links": [
+        {
+          "platform": "itchio",
+          "url": "https://altay434.itch.io/madcycle"
+        }
+      ]
+    },
+    {
       "name": "Growmon Island",
       "category": "professional",
       "status": "published",
-      "description": "Growmon Island is a cozy-idle game that lives on your desktop while you work",
+      "description": "Growmon Island is a desktop cozy-idle game where player unlocks new Growmon types, taking care and evolve them to new types. Game has customizable island with different type of decoration which some can be interactable.\r\n\r\nI worked as the only programmer on this project.",
       "media": [
         {
           "type": "youtube",
@@ -91,7 +135,7 @@
       "name": "Triple Pair 3D",
       "category": "professional",
       "status": "published",
-      "description": "3D Match 3 game. Clear the board by matching three objects.",
+      "description": "A 3D object-matching puzzle game centered on observation, memory, and relaxing item collection gameplay.\r\n\r\nI was one of the developers responsible of this project. My responsibilities were:\r\n\r\n- Implementing all the UI elements of the game,\r\n- Gameplay mechanics (boosters, events, etc)\r\n- Events (Daily Login, Endless treasure etc.)\r\n- ...",
       "media": [
         {
           "type": "youtube",
@@ -140,7 +184,7 @@
       "name": "Pusher Master",
       "category": "professional",
       "status": "published",
-      "description": "Classic arcade-style coin pusher game.",
+      "description": "Classic arcade-style coin pusher game.\r\n\r\nI worked as only developer in this project. Implemented gameplay mechanics, UI design, ADs calls etc...\r\n- Physic based gameplay.\r\n- Boosters\r\n- Mini slot Game\r\n- Resource & level systems.\r\n- ...",
       "media": [
         {
           "type": "youtube",
@@ -189,7 +233,7 @@
       "name": "Tile Match: Home Design Puzzle",
       "category": "professional",
       "status": "published",
-      "description": "Tile Match is a classic tile-matching game inspired by the game of mahjong.",
+      "description": "A casual tile-matching puzzle game that combines match mechanics with progression and decoration systems.\r\n\r\nI joined the project later and worked on theme/asset changes, new UI/UX design implementation, new gameplay mechanics, new event systems etc.",
       "media": [
         {
           "type": "youtube",
@@ -234,7 +278,7 @@
       "name": "Cube Match: Cube Puzzle 3D",
       "category": "professional",
       "status": "published",
-      "description": "3D Match game.",
+      "description": "A casual 3D cube-matching puzzle game focused on object sorting, pattern recognition and relaxing brain-training gameplay.\r\n\r\nI joined the project later and worked on theme/asset changes, new UI/UX design implementation, and gameplay feel improvements.",
       "media": [
         {
           "type": "image",
@@ -279,7 +323,7 @@
       "name": "Toy Cube Match",
       "category": "professional",
       "status": "published",
-      "description": "This is a swipe to match, match-3 game.",
+      "description": "A colorful casual match puzzle game built around fast-paced level progression, boosters, and satisfying combo mechanics.\r\n\r\nI started with a ready-made template and worked on asset changes, new UI/UX design implementation and small gameplay improvements.",
       "media": [
         {
           "type": "image",
@@ -319,7 +363,7 @@
       "name": "Wood Match - Wood Block",
       "category": "professional",
       "status": "published",
-      "description": "Classic block puzzle game.",
+      "description": "A minimalist block-matching puzzle game featuring strategic placement, relaxing progression, and brain-teasing challenges.\r\n\r\nI supervise the junior-developer worked on the game and later take over. I worked on:\r\n\r\n- Booster system,\r\n- New level progression design,\r\n- New ui implementation",
       "media": [
         {
           "type": "image",
@@ -364,7 +408,7 @@
       "name": "Mr Richie",
       "category": "professional",
       "status": "published",
-      "description": "Mr Richie - Revenge Bullet is a Action-Platformer game.",
+      "description": "A platformer-shooter game with different type of enemies, boos fights and level progression.\r\n\r\nI started with a ready-made template and worked on asset changes, new UI/UX design implementation and small gameplay improvements.",
       "media": [
         {
           "type": "image",
