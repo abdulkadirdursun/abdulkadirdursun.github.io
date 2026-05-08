@@ -37,7 +37,6 @@ if (!Array.isArray(config.categories) || config.categories.length === 0) {
 
 const categories = config.categories as CategoryDef[];
 const categoryIds = categories.map(c => c.id);
-const categoryOrder = new Map(categoryIds.map((id, i) => [id, i]));
 
 // Collect projects from category folders
 const projects: Array<Record<string, unknown>> = [];
@@ -85,42 +84,36 @@ for (const category of categoryIds) {
   }
 }
 
-// Warn on duplicate sortOrder within same category
-for (const category of categoryIds) {
-  const categoryProjects = projects.filter(p => p.category === category && p.sortOrder !== undefined);
+// Warn on duplicate sortOrder across all projects (sort is global)
+{
   const seen = new Map<number, string[]>();
-  for (const p of categoryProjects) {
+  for (const p of projects) {
+    if (p.sortOrder === undefined) continue;
     const order = p.sortOrder as number;
     if (!seen.has(order)) seen.set(order, []);
-    seen.get(order)!.push(p.name as string);
+    seen.get(order)!.push(`${p.category}/${p.name}`);
   }
   for (const [order, names] of seen) {
     if (names.length > 1) {
-      console.warn(`WARN ${category}: duplicate sortOrder ${order} in: ${names.join(", ")}`);
+      console.warn(`WARN duplicate sortOrder ${order} in: ${names.join(", ")}`);
     }
   }
 }
 
-// Sort projects: per-category (in config order), sortOrder ascending (with-sortOrder first, then without)
+// Sort projects globally: sortOrder ascending (with-sortOrder first, then without), name as tiebreak.
+// Category-filtered tabs preserve this order since filtering keeps relative order.
 projects.sort((a, b) => {
-  const catA = categoryOrder.get(a.category as string) ?? Number.MAX_SAFE_INTEGER;
-  const catB = categoryOrder.get(b.category as string) ?? Number.MAX_SAFE_INTEGER;
-  if (catA !== catB) return catA - catB;
-
   const orderA = a.sortOrder as number | undefined;
   const orderB = b.sortOrder as number | undefined;
   const nameA = (a.name as string).toLowerCase();
   const nameB = (b.name as string).toLowerCase();
 
-  // Both have sortOrder: ascending, tie-break by name
   if (orderA !== undefined && orderB !== undefined) {
     if (orderA !== orderB) return orderA - orderB;
     return nameA.localeCompare(nameB);
   }
-  // Only one has sortOrder: it comes first
   if (orderA !== undefined) return -1;
   if (orderB !== undefined) return 1;
-  // Neither has sortOrder: alphabetical by name
   return nameA.localeCompare(nameB);
 });
 

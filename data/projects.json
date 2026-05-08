@@ -52,50 +52,6 @@
   ],
   "projects": [
     {
-      "name": "Madcycle",
-      "category": "personal",
-      "status": "published",
-      "description": "<p>Madcycle is a game developed by 3 person team (2 developer and 1 game artist) for a game-jam.</p>\n",
-      "media": [
-        {
-          "type": "youtube",
-          "videoId": "tH-vi7_MZOw"
-        },
-        {
-          "type": "image",
-          "src": "assets/projects/madcycle/cover1.png"
-        },
-        {
-          "type": "image",
-          "src": "assets/projects/madcycle/cover2.png"
-        },
-        {
-          "type": "image",
-          "src": "assets/projects/madcycle/cover3.png"
-        }
-      ],
-      "tags": {
-        "engine": [
-          "Unity"
-        ],
-        "platform": [
-          "Itchio"
-        ],
-        "genre": [
-          "FPS"
-        ],
-        "graphics": [
-          "3D"
-        ]
-      },
-      "links": [
-        {
-          "platform": "itchio",
-          "url": "https://altay434.itch.io/madcycle"
-        }
-      ]
-    },
-    {
       "name": "Growmon Island",
       "category": "professional",
       "status": "published",
@@ -452,6 +408,50 @@
         {
           "platform": "Android",
           "url": "https://play.google.com/store/apps/details?id=richie.revenge.bullet.run.shoot"
+        }
+      ]
+    },
+    {
+      "name": "Madcycle",
+      "category": "personal",
+      "status": "published",
+      "description": "<p>Madcycle is a game developed by 3 person team (2 developer and 1 game artist) for a game-jam.</p>\n",
+      "media": [
+        {
+          "type": "youtube",
+          "videoId": "tH-vi7_MZOw"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover1.png"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover2.png"
+        },
+        {
+          "type": "image",
+          "src": "assets/projects/madcycle/cover3.png"
+        }
+      ],
+      "tags": {
+        "engine": [
+          "Unity"
+        ],
+        "platform": [
+          "Itchio"
+        ],
+        "genre": [
+          "FPS"
+        ],
+        "graphics": [
+          "3D"
+        ]
+      },
+      "links": [
+        {
+          "platform": "itchio",
+          "url": "https://altay434.itch.io/madcycle"
         }
       ]
     }

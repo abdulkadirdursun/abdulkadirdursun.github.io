@@ -17,7 +17,7 @@ Because of this split, `data/projects.json` is a **build artifact** — do not e
 
 ### Sort semantics (build-data.ts)
 
-Projects are grouped by category in the order `["personal", "professional"]`. Within a category: items with `sortOrder` come first (ascending, ties broken by name); items without come after, alphabetically. `sortOrder` must be a positive integer or it's silently dropped with a warning. Duplicate `sortOrder` values within a category produce a warning but do not fail the build. Missing required frontmatter fields cause that file to be skipped and the build to exit non-zero (other projects still write).
+Projects are sorted globally (not grouped by category): items with `sortOrder` come first (ascending, ties broken by name); items without come after, alphabetically. Per-category tabs filter this list and preserve the relative order. `sortOrder` must be a positive integer or it's silently dropped with a warning. Duplicate `sortOrder` values produce a warning but do not fail the build. Missing required frontmatter fields cause that file to be skipped and the build to exit non-zero (other projects still write).
 
 ### Filter semantics (utils/filter.ts)
 
