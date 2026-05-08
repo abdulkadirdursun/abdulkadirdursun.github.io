@@ -28,12 +28,15 @@ export function createProjectCard(project: Project, tagTypes: TagType[]): Projec
   title.textContent = project.name;
   card.appendChild(title);
 
+  const descSlot = document.createElement("div");
+  descSlot.className = "desc-slot";
   const desc = document.createElement("div");
   desc.className = "project-desc";
   desc.innerHTML = project.description;
-  card.appendChild(desc);
+  descSlot.appendChild(desc);
+  card.appendChild(descSlot);
 
-  const COLLAPSED_MAX_EM = 4.8;
+  const COLLAPSED_MAX_EM = 8;
   const checkOverflow = (): void => {
     const fontSizePx = parseFloat(getComputedStyle(desc).fontSize);
     const limitPx = COLLAPSED_MAX_EM * fontSizePx;

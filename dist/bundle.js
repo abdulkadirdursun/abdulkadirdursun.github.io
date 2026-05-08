@@ -316,11 +316,14 @@
     const title = document.createElement("h2");
     title.textContent = project.name;
     card.appendChild(title);
+    const descSlot = document.createElement("div");
+    descSlot.className = "desc-slot";
     const desc = document.createElement("div");
     desc.className = "project-desc";
     desc.innerHTML = project.description;
-    card.appendChild(desc);
-    const COLLAPSED_MAX_EM = 4.8;
+    descSlot.appendChild(desc);
+    card.appendChild(descSlot);
+    const COLLAPSED_MAX_EM = 8;
     const checkOverflow = () => {
       const fontSizePx = parseFloat(getComputedStyle(desc).fontSize);
       const limitPx = COLLAPSED_MAX_EM * fontSizePx;
