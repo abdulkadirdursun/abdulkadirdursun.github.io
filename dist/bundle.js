@@ -320,10 +320,20 @@
     desc.className = "project-desc";
     desc.textContent = project.description;
     card.appendChild(desc);
+    const COLLAPSED_MAX_EM = 4.8;
     const checkOverflow = () => {
-      desc.classList.toggle("is-overflowing", desc.scrollHeight > desc.clientHeight + 1);
+      const fontSizePx = parseFloat(getComputedStyle(desc).fontSize);
+      const limitPx = COLLAPSED_MAX_EM * fontSizePx;
+      desc.classList.toggle("is-overflowing", desc.scrollHeight > limitPx + 1);
     };
-    const descObserver = new ResizeObserver(checkOverflow);
+    let prevWidth = -1;
+    const descObserver = new ResizeObserver((entries) => {
+      const width = entries[0].contentRect.width;
+      if (Math.abs(width - prevWidth) < 0.5)
+        return;
+      prevWidth = width;
+      checkOverflow();
+    });
     descObserver.observe(desc);
     if (document.fonts?.ready) {
       document.fonts.ready.then(checkOverflow);
