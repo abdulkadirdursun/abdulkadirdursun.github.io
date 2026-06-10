@@ -147,7 +147,7 @@ Delete the corresponding markdown file under `data/projects/<category>/`, then r
 | Field        | Required | Type                 | Notes                                                                                         |
 | ------------ | -------- | -------------------- | --------------------------------------------------------------------------------------------- |
 | `name`       | yes      | string               | Card title. Quote it if it contains a colon (`name: "Cube Match: 3D Puzzle"`).                |
-| `status`     | yes      | enum                 | One of: `published`, `cancelled`, `prototype`, `in-development`. Drives the colored badge.    |
+| `status`     | yes      | enum                 | One of: `published`, `cancelled`, `prototype`, `work-in-progress`. Drives the colored badge.    |
 | `media`      | yes      | array                | At least one item. See [Media](#media-images-and-youtube).                                    |
 | `tags`       | yes      | object               | Map of `tagType.id → string[]`. Keys must match `tagTypes[].id` in `config.json`.             |
 | `links`      | yes      | array                | List of `{ platform, url }`. See [Platform links](#platform-links-and-icons).                 |

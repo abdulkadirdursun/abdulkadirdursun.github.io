@@ -38,7 +38,7 @@ export const STATUS_LABELS = {
   "published": "Published",
   "cancelled": "Cancelled",
   "prototype": "Prototype",
-  "in-development": "In Development",
+  "work-in-progress": "Work In Progress",
 } as const;
 
 export type ProjectStatus = keyof typeof STATUS_LABELS;

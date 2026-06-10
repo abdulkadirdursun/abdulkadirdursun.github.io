@@ -101,13 +101,13 @@ for (const category of categoryIds) {
 }
 
 const STATUS_SORT_RANK: Record<string, number> = {
-  "in-development": 0,
+  "work-in-progress": 0,
   "published": 1,
   "prototype": 2,
   "cancelled": 3,
 };
 
-// Sort projects globally: status rank first (in-development -> published -> prototype -> cancelled),
+// Sort projects globally: status rank first (work-in-progress -> published -> prototype -> cancelled),
 // then sortOrder ascending within each status (with-sortOrder first, then without), name as tiebreak.
 // Category-filtered tabs preserve this order since filtering keeps relative order.
 projects.sort((a, b) => {

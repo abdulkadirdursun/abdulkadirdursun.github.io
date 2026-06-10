@@ -1,7 +1,7 @@
 ---
 name: Match 3
 sortOrder: 4
-status: in-development
+status: work-in-progress
 media:
     - type: youtube
       videoId: FXH-lDaI-Mg

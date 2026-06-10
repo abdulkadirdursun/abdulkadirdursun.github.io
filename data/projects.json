@@ -54,7 +54,7 @@
     {
       "name": "Match 3",
       "category": "personal",
-      "status": "in-development",
+      "status": "work-in-progress",
       "description": "<p>A mobile-style match-3 puzzle game built in Unity, recreating the core board gameplay of Royal Match: swap-to-match, cascading drops, and chain-reaction combos.</p>\n",
       "media": [
         {

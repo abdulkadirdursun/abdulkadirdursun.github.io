@@ -216,7 +216,7 @@
     "published": "Published",
     "cancelled": "Cancelled",
     "prototype": "Prototype",
-    "in-development": "In Development"
+    "work-in-progress": "Work In Progress"
   };
 
   // src/components/slideshow.ts
