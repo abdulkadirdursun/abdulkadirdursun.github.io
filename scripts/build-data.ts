@@ -84,25 +84,37 @@ for (const category of categoryIds) {
   }
 }
 
-// Warn on duplicate sortOrder across all projects (sort is global)
+// Warn on duplicate sortOrder within the same status (sortOrder only competes inside a status cluster)
 {
-  const seen = new Map<number, string[]>();
+  const seen = new Map<string, string[]>();
   for (const p of projects) {
     if (p.sortOrder === undefined) continue;
-    const order = p.sortOrder as number;
-    if (!seen.has(order)) seen.set(order, []);
-    seen.get(order)!.push(`${p.category}/${p.name}`);
+    const key = `${p.status}:${p.sortOrder}`;
+    if (!seen.has(key)) seen.set(key, []);
+    seen.get(key)!.push(`${p.category}/${p.name}`);
   }
-  for (const [order, names] of seen) {
+  for (const [key, names] of seen) {
     if (names.length > 1) {
-      console.warn(`WARN duplicate sortOrder ${order} in: ${names.join(", ")}`);
+      console.warn(`WARN duplicate sortOrder (${key}) in: ${names.join(", ")}`);
     }
   }
 }
 
-// Sort projects globally: sortOrder ascending (with-sortOrder first, then without), name as tiebreak.
+const STATUS_SORT_RANK: Record<string, number> = {
+  "in-development": 0,
+  "published": 1,
+  "prototype": 2,
+  "cancelled": 3,
+};
+
+// Sort projects globally: status rank first (in-development -> published -> prototype -> cancelled),
+// then sortOrder ascending within each status (with-sortOrder first, then without), name as tiebreak.
 // Category-filtered tabs preserve this order since filtering keeps relative order.
 projects.sort((a, b) => {
+  const rankA = STATUS_SORT_RANK[a.status as string] ?? 99;
+  const rankB = STATUS_SORT_RANK[b.status as string] ?? 99;
+  if (rankA !== rankB) return rankA - rankB;
+
   const orderA = a.sortOrder as number | undefined;
   const orderB = b.sortOrder as number | undefined;
   const nameA = (a.name as string).toLowerCase();
