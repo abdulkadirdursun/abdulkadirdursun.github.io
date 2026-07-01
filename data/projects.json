@@ -59,7 +59,7 @@
       "media": [
         {
           "type": "youtube",
-          "videoId": "8v-0MQOMpu0"
+          "videoId": "y88I7HJLfFA"
         }
       ],
       "tags": {
@@ -82,6 +82,48 @@
         {
           "platform": "github",
           "url": "https://github.com/abdulkadirdursun/match-3"
+        }
+      ]
+    },
+    {
+      "name": "Twin Stick Shooter",
+      "category": "personal",
+      "status": "work-in-progress",
+      "description": "<p>A stylized 3D twin-stick shooter built in Unity.</p>\n",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets\\projects\\twinstickshooter\\Gameplay_01.jpg"
+        },
+        {
+          "type": "image",
+          "src": "assets\\projects\\twinstickshooter\\Gameplay_02.jpg"
+        },
+        {
+          "type": "image",
+          "src": "assets\\projects\\twinstickshooter\\Gameplay_03.jpg"
+        }
+      ],
+      "tags": {
+        "engine": [
+          "Unity"
+        ],
+        "platform": [
+          "PC",
+          "WebGL"
+        ],
+        "genre": [
+          "Action",
+          "Shooter"
+        ],
+        "graphics": [
+          "3D"
+        ]
+      },
+      "links": [
+        {
+          "platform": "github",
+          "url": "https://github.com/abdulkadirdursun/Twin-Stick-Shooter"
         }
       ]
     },
