@@ -4,11 +4,11 @@ sortOrder: 5
 status: work-in-progress
 media:
     - type: image
-        src: assets\projects\twinstickshooter\Gameplay_01.jpg
+      src: assets\projects\twinstickshooter\Gameplay_01.jpg
     - type: image
-        src: assets\projects\twinstickshooter\Gameplay_02.jpg
+      src: assets\projects\twinstickshooter\Gameplay_02.jpg
     - type: image
-        src: assets\projects\twinstickshooter\Gameplay_03.jpg
+      src: assets\projects\twinstickshooter\Gameplay_03.jpg
 tags:
     engine: [Unity]
     platform: [PC, WebGL]
